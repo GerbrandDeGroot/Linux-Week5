@@ -15,7 +15,7 @@ set_host:
   file.replace:
     - name: /etc/munin/munin-node.conf
     - pattern: 'host 192.168.32.132'
-    - repl: 'host {{grains['ip4_interfaces']()[1]}}'
+    - repl: 'host {{salt['grains.get']('ip4interfaces')('ens33')[1]}}'
 
 set_host_name:
   file.replace:
