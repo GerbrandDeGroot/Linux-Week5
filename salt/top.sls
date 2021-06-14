@@ -12,8 +12,8 @@ base:
     - install_filebeat
     - filebeat_module_apache
     - install_metricbeat
-    - metricbeat_module_mysql
     - metricbeat_module_apache
     - metricbeat_restart
     - install_munin_node
     - install_wordpress
+    - configure_rsyslog
