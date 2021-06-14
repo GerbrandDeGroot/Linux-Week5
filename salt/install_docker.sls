@@ -9,20 +9,18 @@ https_install:
       - lsb-release
 
 #Docker repository van de Master naar de Minion kopieren
-docker-conf-key:
-  file.managed:
-    - name: /usr/share/keyrings/docker-archive-keyring.gpg
-    - source: salt://docker/docker-archive-keyring.gpg
-
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -:
   cmd.run
 
-docker-conf-sources-list:
-  file.replace:
-    - name: /etc/apt/sources.list
-    - pattern: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable 
-    - repl: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-    - append_if_not_found: True
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable":
+  cmd.run
+
+#docker-conf-sources-list: OUD
+#  file.replace:
+#    - name: /etc/apt/sources.list
+#    - pattern: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable 
+#    - repl: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+#    - append_if_not_found: True
 
 #Docker package installeren
 docker-install:
