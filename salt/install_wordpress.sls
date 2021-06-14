@@ -1,29 +1,32 @@
-#Filebeat repository aanmaken
-filebeat-repository:
-  pkgrepo.managed:
-    - humanname: Filebeat
-    - name: deb https://artifacts.elastic.co/packages/7.x/apt stable main
-    - dist: stable
-    - gpgcheck: 1
-    - key_url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
-#Filebeat package installeren
-filebeat-install:
+#Wordpress package installeren
+wordpress-install:
   pkg.installed:
     - pkgs:
-      - filebeat
+      - wordpress
+      - php
+      - libapache2-mod-php
+      - mysql-server
+      - php-mysql
 
-#Controleren of de Filebeat service al draait, zo niet, schakel deze in.
-filebeat:
+#Controleren of apache2 service al draait, zo niet, schakel deze in.
+apache2:
   service.running:
     - enable: True
 
-#Filebeat configuratie van de Master naar de Minion kopieren
-filebeat-conf:
-  file.managed:
-    - name: /etc/filebeat/filebeat.yml
-    - source: salt://filebeat/filebeat.yml
+#Controleren of de Mysql-server service al draait, zo niet, schakel deze in.
+mysql:
+  service.running:
+    - enable: True
 
-#Filebeat modules inschakelen
-filebeat modules enable system:
+#Wordpress configuratie van de Master naar de Minion kopieren
+wordpress-conf:
+  file.managed:
+    - name: /etc/apache2/sites-available/wordpress.conf
+    - source: salt://wordpress/wordpress.conf
+
+#Site aanzetten en apache2 herladen
+a2ensite wordpress:
+  cmd.run
+
+service apache2 reload:
   cmd.run
