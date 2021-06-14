@@ -11,4 +11,3 @@ docker-module-conf:
 
 metricbeat modules enable docker:
   cmd.run
-
