@@ -16,14 +16,18 @@
 # STAP 3: LOSSE SSH SESSIE VOOR KEYS
 #eerst een ssh sessie starten met ssh gerbrand@salt-minion voor het genereren van keys
 
-#voeg minions toe aan /etc/munin/munin
+#voeg minions toe aan /etc/munin/munin.conf
+#pas salt/top.sls aan met minion hostnames
+
+#Wachtwoord opvragen bij gebruiker
+read -p "Vul het wachtwoord van de minion in: " PASS
 
 #parameters aanpassen en opslaan
-SALT_MINION=192.168.32.143
+SALT_MINION=192.168.32.147
 SALT_MINION_POORT=22
-WACHTWOORD_MINION=server11
+WACHTWOORD_MINION=$PASS
 SALT_MASTER=192.168.32.132
-HOSTNAME_MINION=ubuntuserver11
+HOSTNAME_MINION=ubuntuserver15
 
 sshpass -p $WACHTWOORD_MINION ssh -T root@$SALT_MINION -p $SALT_MINION_POORT -y <<-SSH
 

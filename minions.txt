@@ -2,5 +2,13 @@ ubuntuserver10
 192.168.32.142
 ubuntuserver11
 192.168.32.143
+
 ubuntuserver12
 192.168.32.144
+ubuntuserver13
+192.168.32.145
+
+ubuntuserver14
+192.168.32.146
+ubuntuserver15
+192.168.32.147

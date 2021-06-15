@@ -1,5 +1,5 @@
 base:
-  'ubuntuserver10':
+  'ubuntuserver14':
     - install_filebeat
     - install_metricbeat
     - metricbeat_module_docker
@@ -8,7 +8,7 @@ base:
     - install_docker
     - configure_rsyslog
 
-  'ubuntuserver11':
+  'ubuntuserver15':
     - install_filebeat
     - filebeat_module_apache
     - install_metricbeat
